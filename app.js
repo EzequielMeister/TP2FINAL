@@ -3,9 +3,10 @@ import routes from "./routes/routes.js"
 
 const app= express()
 
-
+//Middelwares fundamentales
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
+
 
 app.use(routes)
 
