@@ -1,8 +1,12 @@
 //Para validar que la palabra que me pidan no sea vacía y sólo con caracteres alfabéticos
 
 export const esPalabraValida = (palabra) => {
+  
+  if (typeof palabra !== "string" || !/^[a-zA-Z]+$/.test(palabra.trim())) {
+    throw new Error("La palabra no es válida");
+  }
+  
 
-return typeof palabra === "string" && /^[a-zA-Z]+$/.test(palabra.trim());
 
     /*
     MAS VALIDACIONES (DE ESTA MANERA ES MEJOR POR QUE YA LA VALIDACION TE TIRA EL ERROR Y TE EVITAS PONER UN TRY CATCH O VARIOS IF EN EL SERVICIO)

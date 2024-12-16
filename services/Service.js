@@ -1,8 +1,8 @@
 import Model from "../model/Model.js";
-import { esPalabraValida } from "../validations/textValidation.js";
-
+import { esPalabraValida } from "../validations/validations.js";
 
 class Service {
+
   model = new Model();
 
   getAllFraseService = async () => {
@@ -33,29 +33,21 @@ class Service {
 
   createService = async (palabra) => {
     try {
-      if (!esPalabraValida(palabra)) {
-        throw new Error("La palabra no es válida");
-      
-      }
-
-      const frase = this.model.create(palabra)
+      esPalabraValida(palabra); // Lanza error si no es válida
+      const frase = this.model.create(palabra);
       return frase;
-
     } catch (error) {
       throw error;
     }
   };
+  
 
 
   deleteService = async (palabra) => {
     try {
-      if (!esPalabraValida(palabra)) {
-        throw new Error("La palabra no es válida");
-      }
-  
+      esPalabraValida(palabra)
       // Eliminar las palabras en el modelo que coincidan con la palabra proporcionada
       const palabrasEliminadas = this.model.delete(palabra);
-      
       return { palabrasEliminadas };
     } catch (error) {
       throw error;
